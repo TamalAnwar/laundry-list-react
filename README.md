@@ -1,5 +1,7 @@
 # Laundry List App React
 
+**App status: Not finished**
+
 This is an upgrade to my first laundry list app which was built on vanillaJS https://github.com/TamalAnwar/ClothesWashTracker
 
 This is going to be a similar app but with some extendend functionalities.
