@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Item from './Item';
+import AddItem from './Additem';
 import data from '../sample';
 
 class App extends Component {
@@ -28,10 +29,17 @@ class App extends Component {
     // Prevent the form from reloading the page
     e.preventDefault();
     // Setting up temporary variables
+
     let text = e.target.text.value;
     let date = e.target.date.value || Date.now();
+    let checked = false;
+
+    if (!text) {
+      return;
+    }
+
     // Setting up the date into an object
-    let item = { text, date };
+    let item = { text, date, checked };
     // Copying the current state of items
     let list = [...this.state.list];
     // Pushing the item to list
@@ -42,6 +50,22 @@ class App extends Component {
     // Resetting the form
     e.target.reset();
   };
+
+  // Delete item
+  deleteItem = (index) => {
+    let list = [...this.state.list];
+    list.splice(index, 1);
+
+    this.setState({ list });
+  };
+
+  checkedItem = (index) => {
+    let list = [...this.state.list];
+
+    list[index].checked = !list[index].checked;
+    this.setState({ list });
+  };
+
   render() {
     let list = [...this.state.list];
     let newList = list.sort((a, b) => {
@@ -52,25 +76,25 @@ class App extends Component {
       }
     });
 
-    console.table(newList);
-
     return (
-      <div className="app-shell">
-        <header id="header">
-          <h1>Tracker</h1>
-        </header>
-        <div className="list">
-          {this.state.list.map((item, i) => (
-            <Item key={i} item={item} />
-          ))}
+      <div>
+        <div className="app-shell">
+          <header id="header">
+            <h1>Tracker</h1>
+          </header>
+          <div className="list">
+            {this.state.list.map((item, i) => (
+              <Item
+                key={i}
+                index={i}
+                item={item}
+                deleteItem={this.deleteItem}
+                checkedItem={this.checkedItem}
+              />
+            ))}
+          </div>
         </div>
-        <div className="add-item">
-          <form onSubmit={this.addItem} action="">
-            <input type="text" name="text" />
-            <input type="date" name="date" />
-            <button>Add</button>
-          </form>
-        </div>
+        <AddItem addItem={this.addItem} />
       </div>
     );
   }

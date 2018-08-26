@@ -25,6 +25,34 @@ ol {
   border-radius: 5px;
 }
 
+.checked {
+  background: #ffdb00;
+}
+
+.check,
+.text,
+.delete {
+  display: inline-block;
+}
+
+.check {
+  float: left;
+  padding: 10px;
+  padding-left: 0;
+}
+
+.check input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
+}
+
+.delete {
+  float: right;
+  font-size: 1.5rem;
+  padding: 10px 0;
+}
+
 .item-name {
   font-weight: bold;
 }
@@ -32,4 +60,14 @@ ol {
 .item-date {
   font-size: 0.8rem;
   text-transform: uppercase;
+}
+
+/* Add Item Area  */
+
+.add-item {
+  background: #c1bcf9;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
