@@ -46,7 +46,6 @@ class App extends Component {
     list.push(item);
     // Updating the state
     this.setState({ list });
-    console.log('Running the add item function.');
     // Resetting the form
     e.target.reset();
   };
@@ -78,10 +77,8 @@ class App extends Component {
 
     return (
       <div>
-        <div className="app-shell">
-          <header id="header">
-            <h1>Tracker</h1>
-          </header>
+        <AddItem addItem={this.addItem} />
+        <div className="app-shell wrapper">
           <div className="list">
             {this.state.list.map((item, i) => (
               <Item
@@ -94,7 +91,6 @@ class App extends Component {
             ))}
           </div>
         </div>
-        <AddItem addItem={this.addItem} />
       </div>
     );
   }
